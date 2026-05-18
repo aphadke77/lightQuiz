@@ -1,0 +1,205 @@
+{
+  "title": "Canada Quiz",
+  "questions": [
+    {
+      "question": "What are the three parts of Canada's Parliament?",
+      "answerOptions": [
+        { "text": "The Queen, the Senate, and the House of Commons", "isCorrect": true, "rationale": "Canada's Parliament consists of the Crown (represented by the Queen), the Senate, and the House of Commons." },
+        { "text": "The Prime Minister, the Cabinet, and the Courts", "isCorrect": false, "rationale": "The Prime Minister and Cabinet are part of the executive branch, not the legislative Parliament." },
+        { "text": "The Governor General, the Senate, and the House of Commons", "isCorrect": false, "rationale": "The Governor General represents the Crown but is not one of the three parts of Parliament itself." },
+        { "text": "The Crown, the Senate, and the Legislative Assembly", "isCorrect": false, "rationale": "Legislative Assembly is a provincial term; federally it is the House of Commons." }
+      ],
+      "hint": "Think of the three bodies that must pass a federal law."
+    },
+    {
+      "question": "Which document is the supreme law of Canada?",
+      "answerOptions": [
+        { "text": "The Charter of Rights", "isCorrect": false, "rationale": "The Charter is part of the Constitution but is not the supreme law itself." },
+        { "text": "The Constitution Act, 1867", "isCorrect": false, "rationale": "This is one part of the Constitution, but the entire Constitution is the supreme law." },
+        { "text": "The Constitution of Canada", "isCorrect": true, "rationale": "The Constitution of Canada, including the Constitution Act, 1867 and the Charter, is the supreme law." },
+        { "text": "The Canadian Bill of Rights", "isCorrect": false, "rationale": "The Canadian Bill of Rights is a federal statute, not the supreme law of Canada." }
+      ],
+      "hint": "This document overrides all other laws."
+    },
+    {
+      "question": "In what year did Canada become a country?",
+      "answerOptions": [
+        { "text": "1776", "isCorrect": false, "rationale": "1776 is the year the United States declared independence." },
+        { "text": "1867", "isCorrect": true, "rationale": "Canada became a country on July 1, 1867, through the Constitution Act (British North America Act)." },
+        { "text": "1885", "isCorrect": false, "rationale": "1885 marked the completion of the transcontinental railway, not Confederation." },
+        { "text": "1931", "isCorrect": false, "rationale": "1931 was the Statute of Westminster granting legislative independence, but Canada was already a country." }
+      ],
+      "hint": "Think of Confederation."
+    },
+    {
+      "question": "What are the two official languages of Canada?",
+      "answerOptions": [
+        { "text": "English and Spanish", "isCorrect": false, "rationale": "Spanish is not an official language of Canada." },
+        { "text": "English and French", "isCorrect": true, "rationale": "Canada has two official languages: English and French, established by the Official Languages Act." },
+        { "text": "French and Indigenous", "isCorrect": false, "rationale": "While Indigenous languages are recognized, they are not official languages at the federal level." },
+        { "text": "English and Inuktitut", "isCorrect": false, "rationale": "Inuktitut is a territorial language in Nunavut but not a federal official language." }
+      ],
+      "hint": "These languages reflect Canada's colonial history."
+    },
+    {
+      "question": "Who was the first Prime Minister of Canada?",
+      "answerOptions": [
+        { "text": "Alexander Mackenzie", "isCorrect": false, "rationale": "Alexander Mackenzie was the second Prime Minister (1873-1878)." },
+        { "text": "Wilfrid Laurier", "isCorrect": false, "rationale": "Wilfrid Laurier was the seventh Prime Minister (1896-1911)." },
+        { "text": "John A. Macdonald", "isCorrect": true, "rationale": "Sir John A. Macdonald became the first Prime Minister of Canada in 1867." },
+        { "text": "Robert Borden", "isCorrect": false, "rationale": "Robert Borden was the eighth Prime Minister (1911-1920)." }
+      ],
+      "hint": "He is known as a Father of Confederation."
+    },
+    {
+      "question": "How many provinces and territories does Canada have?",
+      "answerOptions": [
+        { "text": "10 provinces, 2 territories", "isCorrect": false, "rationale": "There are 3 territories, not 2." },
+        { "text": "10 provinces, 3 territories", "isCorrect": true, "rationale": "Canada has 10 provinces and 3 territories (Yukon, Northwest Territories, Nunavut)." },
+        { "text": "9 provinces, 4 territories", "isCorrect": false, "rationale": "There are 10 provinces and 3 territories." },
+        { "text": "12 provinces, 1 territory", "isCorrect": false, "rationale": "There are only 10 provinces and 3 territories." }
+      ],
+      "hint": "Count them from west to east."
+    },
+    {
+      "question": "What is the name of Canada's national police force?",
+      "answerOptions": [
+        { "text": "Canadian Federal Police", "isCorrect": false, "rationale": "There is no force by this name; the RCMP is the federal police force." },
+        { "text": "Royal Canadian Mounted Police", "isCorrect": true, "rationale": "The RCMP serves as Canada's national police force, providing federal and provincial policing." },
+        { "text": "Canada Border Services", "isCorrect": false, "rationale": "CBSA handles border enforcement, not general national policing." },
+        { "text": "National Security Agency", "isCorrect": false, "rationale": "The NSA is a United States intelligence agency." }
+      ],
+      "hint": "They are known for their red uniforms and musical ride."
+    },
+    {
+      "question": "What does the maple leaf on the Canadian flag symbolize?",
+      "answerOptions": [
+        { "text": "Peace and freedom", "isCorrect": false, "rationale": "While these are Canadian values, the maple leaf specifically symbolizes nature and the environment." },
+        { "text": "The forests of Canada", "isCorrect": false, "rationale": "More broadly, the maple leaf represents nature and the environment across all of Canada." },
+        { "text": "Nature and the environment", "isCorrect": true, "rationale": "The maple leaf has been a symbol of Canada's natural environment since the 1700s." },
+        { "text": "Unity of Canadians", "isCorrect": false, "rationale": "The maple leaf is a national symbol but specifically represents nature and the environment." }
+      ],
+      "hint": "Think about what the maple tree itself represents."
+    },
+    {
+      "question": "Which ocean borders Canada on the west?",
+      "answerOptions": [
+        { "text": "Atlantic Ocean", "isCorrect": false, "rationale": "The Atlantic Ocean borders Canada on the east coast." },
+        { "text": "Arctic Ocean", "isCorrect": false, "rationale": "The Arctic Ocean borders Canada to the north." },
+        { "text": "Pacific Ocean", "isCorrect": true, "rationale": "The Pacific Ocean borders Canada's west coast, primarily British Columbia." },
+        { "text": "Indian Ocean", "isCorrect": false, "rationale": "The Indian Ocean does not border Canada." }
+      ],
+      "hint": "This ocean is on the opposite side from the Atlantic."
+    },
+    {
+      "question": "What is the capital city of Canada?",
+      "answerOptions": [
+        { "text": "Toronto", "isCorrect": false, "rationale": "Toronto is the capital of Ontario, not Canada." },
+        { "text": "Montreal", "isCorrect": false, "rationale": "Montreal is a major city in Quebec but not the capital." },
+        { "text": "Vancouver", "isCorrect": false, "rationale": "Vancouver is a major city in British Columbia but not the capital." },
+        { "text": "Ottawa", "isCorrect": true, "rationale": "Ottawa, located in Ontario, has been the capital of Canada since 1857." }
+      ],
+      "hint": "It is located on the Ottawa River between Ontario and Quebec."
+    },
+    {
+      "question": "Who is the Head of State of Canada?",
+      "answerOptions": [
+        { "text": "The Prime Minister", "isCorrect": false, "rationale": "The Prime Minister is the Head of Government, not Head of State." },
+        { "text": "The Governor General", "isCorrect": false, "rationale": "The Governor General is the federal representative of the monarch." },
+        { "text": "The King/Queen of Canada", "isCorrect": true, "rationale": "The monarch of the United Kingdom is also the monarch of Canada and serves as Head of State." },
+        { "text": "The Chief Justice", "isCorrect": false, "rationale": "The Chief Justice is the head of the Supreme Court, not the Head of State." }
+      ],
+      "hint": "This role is ceremonial and inherited."
+    },
+    {
+      "question": "In which year was the Canadian Charter of Rights and Freedoms adopted?",
+      "answerOptions": [
+        { "text": "1967", "isCorrect": false, "rationale": "1967 was Canada's centennial year, not the year of the Charter." },
+        { "text": "1971", "isCorrect": false, "rationale": "The Charter was not adopted in 1971." },
+        { "text": "1982", "isCorrect": true, "rationale": "The Canadian Charter of Rights and Freedoms was adopted as part of the Constitution Act, 1982." },
+        { "text": "1995", "isCorrect": false, "rationale": "1995 was the year of the Quebec referendum, not the Charter." }
+      ],
+      "hint": "This was the same year the Constitution was patriated."
+    },
+    {
+      "question": "What is the name of Canada's national anthem?",
+      "answerOptions": [
+        { "text": "God Save the King", "isCorrect": false, "rationale": "God Save the King is the royal anthem, not the national anthem." },
+        { "text": "The Maple Leaf Forever", "isCorrect": false, "rationale": "This was a popular patriotic song but was never adopted as the national anthem." },
+        { "text": "O Canada", "isCorrect": true, "rationale": "O Canada was proclaimed the national anthem in 1980." },
+        { "text": "True North Strong", "isCorrect": false, "rationale": "True North Strong and Free is a line from the anthem, not the name of it." }
+      ],
+      "hint": "It begins with 'O Canada!'"
+    },
+    {
+      "question": "Which province is the largest by land area?",
+      "answerOptions": [
+        { "text": "Ontario", "isCorrect": false, "rationale": "Ontario is the second-largest province but not the largest." },
+        { "text": "British Columbia", "isCorrect": false, "rationale": "British Columbia is Canada's third-largest province." },
+        { "text": "Alberta", "isCorrect": false, "rationale": "Alberta is the fourth-largest province." },
+        { "text": "Quebec", "isCorrect": true, "rationale": "Quebec is the largest province by land area in Canada." }
+      ],
+      "hint": "This province is known for its vast northern territory."
+    },
+    {
+      "question": "What does 'Confederation' refer to in Canadian history?",
+      "answerOptions": [
+        { "text": "Canada joining the British Empire", "isCorrect": false, "rationale": "Canada was already part of the British Empire before Confederation." },
+        { "text": "The union of provinces to form Canada in 1867", "isCorrect": true, "rationale": "Confederation refers to the union of Nova Scotia, New Brunswick, and the Province of Canada to form the Dominion of Canada in 1867." },
+        { "text": "The signing of the Constitution", "isCorrect": false, "rationale": "The Constitution was patriated in 1982, separate from Confederation." },
+        { "text": "Canada's independence from Britain", "isCorrect": false, "rationale": "Confederation created Canada as a self-governing dominion within the British Empire." }
+      ],
+      "hint": "Think of the birth of Canada as a nation."
+    },
+    {
+      "question": "What are the three levels of government in Canada?",
+      "answerOptions": [
+        { "text": "Federal, Provincial/Territorial, Municipal", "isCorrect": true, "rationale": "Canada has three levels of government: federal, provincial/territorial, and municipal." },
+        { "text": "National, Regional, Local", "isCorrect": false, "rationale": "These are generic terms; the official levels are federal, provincial/territorial, and municipal." },
+        { "text": "Central, State, City", "isCorrect": false, "rationale": "Canada does not use 'state' as a level of government." },
+        { "text": "Crown, Parliament, Courts", "isCorrect": false, "rationale": "These are branches of government, not levels." }
+      ],
+      "hint": "Think about how services are divided geographically."
+    },
+    {
+      "question": "Which industry is most associated with the Prairie provinces?",
+      "answerOptions": [
+        { "text": "Fishing and forestry", "isCorrect": false, "rationale": "Fishing and forestry are more associated with coastal provinces." },
+        { "text": "Mining and oil", "isCorrect": false, "rationale": "While oil is important, agriculture is equally central to the Prairie identity." },
+        { "text": "Agriculture and energy", "isCorrect": true, "rationale": "The Prairie provinces (Alberta, Saskatchewan, Manitoba) are known for agriculture and energy production." },
+        { "text": "Manufacturing and tech", "isCorrect": false, "rationale": "Manufacturing and tech are more concentrated in Ontario and Quebec." }
+      ],
+      "hint": "Think of wheat fields and oil fields."
+    },
+    {
+      "question": "What right does the Canadian Charter of Rights NOT guarantee?",
+      "answerOptions": [
+        { "text": "Freedom of expression", "isCorrect": false, "rationale": "Freedom of expression is explicitly guaranteed under Section 2 of the Charter." },
+        { "text": "The right to own property", "isCorrect": true, "rationale": "Unlike the US Constitution, the Canadian Charter does not guarantee the right to own property." },
+        { "text": "Democratic rights", "isCorrect": false, "rationale": "Democratic rights, including the right to vote, are guaranteed under Sections 3-5." },
+        { "text": "Mobility rights", "isCorrect": false, "rationale": "Mobility rights to live and work anywhere in Canada are guaranteed under Section 6." }
+      ],
+      "hint": "This is a key difference from the US Bill of Rights."
+    },
+    {
+      "question": "Where was the transcontinental railway completed in 1885?",
+      "answerOptions": [
+        { "text": "Vancouver, BC", "isCorrect": false, "rationale": "The railway reached Vancouver later; the completion was at Craigellachie." },
+        { "text": "Craigellachie, BC", "isCorrect": true, "rationale": "The last spike was driven at Craigellachie, British Columbia, on November 7, 1885." },
+        { "text": "Winnipeg, Manitoba", "isCorrect": false, "rationale": "Winnipeg was a major railway hub but not where the final spike was driven." },
+        { "text": "Calgary, Alberta", "isCorrect": false, "rationale": "Calgary was along the railway route but was not the completion point." }
+      ],
+      "hint": "This location is in the mountains of British Columbia."
+    },
+    {
+      "question": "What is the significance of November 11th in Canada?",
+      "answerOptions": [
+        { "text": "Canada Day", "isCorrect": false, "rationale": "Canada Day is July 1st." },
+        { "text": "Victoria Day", "isCorrect": false, "rationale": "Victoria Day is celebrated on the Monday before May 25." },
+        { "text": "Remembrance Day", "isCorrect": true, "rationale": "November 11th is Remembrance Day, honouring veterans and those who died in military service." },
+        { "text": "National Patriots Day", "isCorrect": false, "rationale": "National Patriots Day is observed in Quebec on the Monday before May 25." }
+      ],
+      "hint": "This day honours those who served in wars."
+    }
+  ]
+}

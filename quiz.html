@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeIn 0.3s ease-out; }
+        @keyframes slideDown { from { opacity: 0; max-height: 0; } to { opacity: 1; max-height: 200px; } }
+        .slide-down { animation: slideDown 0.3s ease-out; overflow: hidden; }
+        .option-btn { transition: all 0.2s; }
+        .option-btn:hover:not(.selected):not(.disabled) { border-color: #6366f1; background: #eef2ff; }
+        .option-btn.selected { border-color: #6366f1; background: #eef2ff; }
+        .option-btn.correct { border-color: #22c55e; background: #f0fdf4; }
+        .option-btn.incorrect { border-color: #ef4444; background: #fef2f2; }
+        .option-btn.disabled { cursor: default; opacity: 0.7; }
+        .progress-bar { transition: width 0.4s ease; }
+        #dropZone { transition: all 0.3s; }
+        #dropZone.drag-over { border-color: #6366f1; background: #eef2ff; }
+        .topic-badge { transition: all 0.2s; }
+        .topic-badge:hover { transform: translateY(-1px); }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 to-indigo-50 min-h-screen font-sans antialiased">
+
+    <div class="max-w-3xl mx-auto px-4 py-8">
+        <div id="app"></div>
+    </div>
+
+<template id="tpl-home">
+    <div class="fade-in">
+        <div class="text-center mb-10">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-indigo-100 rounded-2xl mb-4">
+                <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                </svg>
+            </div>
+            <h1 class="text-4xl font-bold text-slate-800 mb-2">Quiz App</h1>
+            <p class="text-slate-500">Load a quiz JSON file to get started</p>
+        </div>
+
+        <div id="dropZone" class="border-2 border-dashed border-slate-300 rounded-2xl p-10 text-center cursor-pointer hover:border-indigo-400 hover:bg-indigo-50/30 mb-6" onclick="document.getElementById('fileInput').click()">
+            <input type="file" id="fileInput" accept=".json" class="hidden">
+            <div class="mb-3">
+                <svg class="w-10 h-10 mx-auto text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                </svg>
+            </div>
+            <p class="text-slate-600 font-medium">Drop a JSON file here or click to browse</p>
+            <p class="text-slate-400 text-sm mt-1">Supports quiz format and hierarchical topic format</p>
+        </div>
+
+        <div class="text-center mb-8">
+            <span class="text-slate-400 text-sm">or</span>
+        </div>
+
+        <div class="grid gap-4">
+            <div class="bg-white rounded-xl p-5 shadow-sm border border-slate-200 flex items-center justify-between" id="defaultQuiz">
+                <div>
+                    <h3 class="font-semibold text-slate-800">Databricks Quiz</h3>
+                    <p class="text-slate-500 text-sm">10 questions about Databricks platform</p>
+                </div>
+                <button class="px-5 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition text-sm font-medium">Load</button>
+            </div>
+        </div>
+
+        <div class="mt-8 bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+            <h3 class="font-semibold text-slate-800 mb-3">JSON Format Reference</h3>
+            <p class="text-sm text-slate-500 mb-3">Create your own quiz with this structure:</p>
+            <pre class="bg-slate-50 rounded-lg p-4 text-xs text-slate-600 overflow-x-auto"><code>{
+  "title": "My Quiz",
+  "questions": [
+    {
+      "question": "What is 2+2?",
+      "topic": "Math",
+      "hint": "Basic arithmetic",
+      "answerOptions": [
+        { "text": "4", "isCorrect": true, "rationale": "2+2=4" },
+        { "text": "5", "isCorrect": false, "rationale": "Incorrect sum" }
+      ]
+    }
+  ]
+}</code></pre>
+            <p class="text-xs text-slate-400 mt-2">Or use the <strong>hierarchical topic format</strong> (like <code>quiz/Databricks.json</code>) and questions will be auto-generated.</p>
+        </div>
+    </div>
+</template>
+
+<template id="tpl-quiz">
+    <div class="fade-in">
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+            <div class="p-6 pb-0">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xl font-bold text-slate-800" id="quizTitle"></h2>
+                    <span class="text-sm font-medium text-slate-500" id="questionCounter">1/10</span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-full h-2 mb-6">
+                    <div class="progress-bar bg-indigo-600 h-2 rounded-full" style="width:10%" id="progressBar"></div>
+                </div>
+            </div>
+
+            <div class="px-6 pb-6">
+                <p class="text-lg font-medium text-slate-800 mb-6" id="questionText"></p>
+
+                <div id="optionsContainer" class="space-y-3"></div>
+
+                <div id="hintContainer" class="mt-4 hidden">
+                    <div class="flex items-start gap-2 p-4 bg-amber-50 border border-amber-200 rounded-xl slide-down">
+                        <svg class="w-5 h-5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <p class="text-sm text-amber-700" id="hintText"></p>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between mt-6 pt-4 border-t border-slate-100">
+                    <div>
+                        <button id="hintBtn" class="text-sm text-slate-500 hover:text-amber-600 transition flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                            </svg>
+                            Hint
+                        </button>
+                    </div>
+                    <div class="flex gap-3">
+                        <button id="prevBtn" class="px-4 py-2 text-sm font-medium text-slate-600 bg-slate-100 rounded-lg hover:bg-slate-200 transition">Previous</button>
+                        <button id="nextBtn" class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition">Next</button>
+                        <button id="submitBtn" class="px-6 py-2 text-sm font-medium text-white bg-emerald-600 rounded-lg hover:bg-emerald-700 transition hidden">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template id="tpl-results">
+    <div class="fade-in">
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-6">
+            <div class="p-8 text-center">
+                <div class="inline-flex items-center justify-center w-20 h-20 rounded-full mb-4" id="scoreCircle">
+                    <span class="text-3xl font-bold" id="scoreText">0/10</span>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800 mb-1" id="resultTitle">Great Job!</h2>
+                <p class="text-slate-500" id="resultDescription">You scored 80%</p>
+            </div>
+
+            <div class="px-8 pb-6 grid grid-cols-3 gap-3 text-center text-sm" id="statsRow">
+                <div class="bg-emerald-50 rounded-xl p-3">
+                    <div class="text-2xl font-bold text-emerald-600" id="correctCount">0</div>
+                    <div class="text-emerald-600 text-xs">Correct</div>
+                </div>
+                <div class="bg-red-50 rounded-xl p-3">
+                    <div class="text-2xl font-bold text-red-600" id="incorrectCount">0</div>
+                    <div class="text-red-600 text-xs">Incorrect</div>
+                </div>
+                <div class="bg-slate-50 rounded-xl p-3">
+                    <div class="text-2xl font-bold text-slate-600" id="unansweredCount">0</div>
+                    <div class="text-slate-600 text-xs">Unanswered</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-6" id="improvementSection">
+            <div class="p-6">
+                <h3 class="text-lg font-bold text-slate-800 mb-1">Areas for Improvement</h3>
+                <p class="text-sm text-slate-500 mb-4">Focus on these topics to improve your score</p>
+                <div id="topicsList" class="space-y-3"></div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-bold text-slate-800">Detailed Review</h3>
+                    <span class="text-xs text-slate-400">Click to expand</span>
+                </div>
+                <div id="reviewList" class="space-y-3"></div>
+            </div>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+            <button id="retryBtn" class="flex-1 px-6 py-3 text-sm font-medium text-white bg-indigo-600 rounded-xl hover:bg-indigo-700 transition">Retry Quiz</button>
+            <button id="newQuizBtn" class="flex-1 px-6 py-3 text-sm font-medium text-indigo-600 bg-indigo-50 rounded-xl hover:bg-indigo-100 transition">New Quiz</button>
+        </div>
+    </div>
+</template>
+
+    <script>
+    const DEFAULT_QUIZ_URL = 'quiz.json';
+
+    let state = {
+        screen: 'home',
+        quizData: null,
+        questions: [],
+        userAnswers: [],
+        currentQuestion: 0,
+        hintsRevealed: [],
+        quizTitle: '',
+        sourceFormat: null
+    };
+
+    const $ = id => document.getElementById(id);
+    const tpl = id => document.getElementById(id).content.cloneNode(true);
+
+    function render(screen) {
+        state.screen = screen;
+        const app = $('app');
+        app.innerHTML = '';
+        app.appendChild(tpl(`tpl-${screen}`));
+        if (screen === 'home') initHome();
+        if (screen === 'quiz') initQuiz();
+        if (screen === 'results') initResults();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        render('home');
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('quiz')) loadFromUrl(params.get('quiz'));
+    });
+
+    function initHome() {
+        $('fileInput').addEventListener('change', e => {
+            const file = e.target.files[0];
+            if (file) loadFromFile(file);
+        });
+
+        const dropZone = $('dropZone');
+        dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+        dropZone.addEventListener('drop', e => {
+            e.preventDefault();
+            dropZone.classList.remove('drag-over');
+            const file = e.dataTransfer.files[0];
+            if (file && file.name.endsWith('.json')) loadFromFile(file);
+        });
+
+        $('defaultQuiz').querySelector('button').addEventListener('click', () => loadDefaultQuiz());
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Enter' && state.screen === 'home') loadDefaultQuiz();
+        });
+    }
+
+    function loadDefaultQuiz() {
+        fetch(DEFAULT_QUIZ_URL)
+            .then(r => {
+                if (!r.ok) throw new Error('Not found');
+                return r.json();
+            })
+            .then(data => {
+                if (data.questions) {
+                    state.sourceFormat = 'quiz';
+                    startQuiz(data);
+                } else if (data.children || data.name) {
+                    state.sourceFormat = 'hierarchical';
+                    startQuiz(hierarchicalToQuiz(data));
+                } else {
+                    alert('Unrecognized JSON format. Please check the file structure.');
+                }
+            })
+            .catch(() => {
+                alert('Default quiz not found. Please upload a JSON file.');
+            });
+    }
+
+    function loadFromFile(file) {
+        const reader = new FileReader();
+        reader.onload = e => {
+            try {
+                const data = JSON.parse(e.target.result);
+                if (data.questions) {
+                    state.sourceFormat = 'quiz';
+                    startQuiz(data);
+                } else if (data.children || data.name) {
+                    state.sourceFormat = 'hierarchical';
+                    startQuiz(hierarchicalToQuiz(data));
+                } else {
+                    alert('Unrecognized JSON format. Please check the file structure.');
+                }
+            } catch {
+                alert('Invalid JSON file.');
+            }
+        };
+        reader.readAsText(file);
+    }
+
+    function loadFromUrl(url) {
+        fetch(url)
+            .then(r => r.json())
+            .then(data => {
+                if (data.questions) startQuiz(data);
+                else if (data.children) startQuiz(hierarchicalToQuiz(data));
+            })
+            .catch(() => {});
+    }
+
+    function hierarchicalToQuiz(data) {
+        const rootName = data.name || 'Untitled';
+        const categories = data.children || [];
+        const questions = [];
+        const allLeaves = [];
+
+        function collectLeaves(node, category) {
+            if (!node.children || node.children.length === 0) {
+                allLeaves.push({ name: node.name, category });
+                return;
+            }
+            node.children.forEach(child => collectLeaves(child, node.name));
+        }
+        categories.forEach(cat => collectLeaves(cat, cat.name));
+
+        if (allLeaves.length < 4) {
+            return { title: rootName, questions: [] };
+        }
+
+        const used = new Set();
+        categories.forEach(cat => {
+            const catLeaves = allLeaves.filter(l => l.category === cat.name);
+            catLeaves.forEach(leaf => {
+                const distractors = allLeaves
+                    .filter(l => l.category !== cat.name)
+                    .sort(() => 0.5 - Math.random())
+                    .slice(0, 3);
+
+                if (distractors.length < 3) return;
+
+                const options = [
+                    { text: leaf.name, isCorrect: true, rationale: `Correct. "${leaf.name}" is part of "${cat.name}" in the ${rootName} knowledge tree.` },
+                    ...distractors.map(d => ({
+                        text: d.name,
+                        isCorrect: false,
+                        rationale: `Incorrect. "${d.name}" belongs to "${d.category}", not "${cat.name}".`
+                    }))
+                ];
+                options.sort(() => 0.5 - Math.random());
+
+                const key = `${cat.name}-${leaf.name}`;
+                if (used.has(key)) return;
+                used.add(key);
+
+                questions.push({
+                    question: `Which of the following is part of "${cat.name}" in ${rootName}?`,
+                    answerOptions: options,
+                    hint: `Think about what "${leaf.name}" relates to in the ${rootName} knowledge structure.`,
+                    topic: cat.name
+                });
+            });
+        });
+
+        questions.sort(() => 0.5 - Math.random());
+        if (questions.length > 20) questions.length = 20;
+
+        return { title: `${rootName} Quiz (Auto-generated)`, questions };
+    }
+
+    function startQuiz(data) {
+        state.quizData = data;
+        state.questions = data.questions || [];
+        state.quizTitle = data.title || 'Untitled Quiz';
+        state.userAnswers = new Array(state.questions.length).fill(null);
+        state.hintsRevealed = new Array(state.questions.length).fill(false);
+        state.currentQuestion = 0;
+
+        if (state.questions.length === 0) {
+            alert('No questions found in the selected file.');
+            return;
+        }
+        render('quiz');
+    }
+
+    function initQuiz() {
+        $('quizTitle').textContent = state.quizTitle;
+        renderQuestion();
+        $('prevBtn').addEventListener('click', () => navigateQuestion(-1));
+        $('nextBtn').addEventListener('click', () => navigateQuestion(1));
+        $('submitBtn').addEventListener('click', submitQuiz);
+        $('hintBtn').addEventListener('click', toggleHint);
+        document.addEventListener('keydown', handleQuizKeydown);
+    }
+
+    function handleQuizKeydown(e) {
+        if (e.key === 'ArrowLeft') navigateQuestion(-1);
+        else if (e.key === 'ArrowRight') navigateQuestion(1);
+        else if (e.key >= '1' && e.key <= '4') selectOption(parseInt(e.key) - 1);
+        else if (e.key === 'Enter' && state.screen === 'quiz') {
+            const submitBtn = $('submitBtn');
+            if (!submitBtn.classList.contains('hidden')) submitQuiz();
+            else navigateQuestion(1);
+        }
+    }
+
+    function renderQuestion() {
+        const idx = state.currentQuestion;
+        const q = state.questions[idx];
+        if (!q) return;
+
+        $('questionCounter').textContent = `${idx + 1}/${state.questions.length}`;
+        $('progressBar').style.width = `${((idx + 1) / state.questions.length) * 100}%`;
+        $('questionText').textContent = q.question;
+
+        const container = $('optionsContainer');
+        container.innerHTML = '';
+        q.answerOptions.forEach((opt, oi) => {
+            const btn = document.createElement('button');
+            btn.className = `option-btn w-full text-left p-4 rounded-xl border-2 border-slate-200 bg-white ${state.userAnswers[idx] === oi ? 'selected' : ''}`;
+            btn.innerHTML = `
+                <div class="flex items-center gap-3">
+                    <span class="w-6 h-6 rounded-full border-2 border-slate-300 flex items-center justify-center text-xs font-medium shrink-0 ${state.userAnswers[idx] === oi ? 'bg-indigo-600 text-white border-indigo-600' : ''}" id="radio-${oi}">${'ABCD'[oi]}</span>
+                    <span class="text-slate-700">${opt.text}</span>
+                </div>
+            `;
+            btn.addEventListener('click', () => selectOption(oi));
+            container.appendChild(btn);
+        });
+
+        const hintBtn = $('hintBtn');
+        const hintContainer = $('hintContainer');
+        if (q.hint) {
+            hintBtn.classList.remove('hidden');
+            if (state.hintsRevealed[idx]) {
+                $('hintText').textContent = q.hint;
+                hintContainer.classList.remove('hidden');
+            } else {
+                hintContainer.classList.add('hidden');
+            }
+        } else {
+            hintBtn.classList.add('hidden');
+            hintContainer.classList.add('hidden');
+        }
+
+        $('prevBtn').classList.toggle('opacity-50', idx === 0);
+        const isLast = idx === state.questions.length - 1;
+        $('nextBtn').classList.toggle('hidden', isLast);
+        $('submitBtn').classList.toggle('hidden', !isLast);
+
+        document.querySelectorAll('.option-btn').forEach((btn, i) => {
+            if (state.userAnswers[idx] === i) btn.classList.add('selected');
+        });
+    }
+
+    function selectOption(oi) {
+        const idx = state.currentQuestion;
+        state.userAnswers[idx] = oi;
+        document.querySelectorAll('.option-btn').forEach((btn, i) => {
+            btn.classList.toggle('selected', i === oi);
+        });
+    }
+
+    function navigateQuestion(dir) {
+        const newIdx = state.currentQuestion + dir;
+        if (newIdx < 0 || newIdx >= state.questions.length) return;
+        state.currentQuestion = newIdx;
+        renderQuestion();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleHint() {
+        const idx = state.currentQuestion;
+        state.hintsRevealed[idx] = !state.hintsRevealed[idx];
+        const hintContainer = $('hintContainer');
+        if (state.hintsRevealed[idx]) {
+            $('hintText').textContent = state.questions[idx].hint;
+            hintContainer.classList.remove('hidden');
+        } else {
+            hintContainer.classList.add('hidden');
+        }
+    }
+
+    function submitQuiz() {
+        const unanswered = state.userAnswers.filter(a => a === null).length;
+        if (unanswered > 0) {
+            if (!confirm(`You have ${unanswered} unanswered question(s). Submit anyway?`)) return;
+        }
+        render('results');
+    }
+
+    function initResults() {
+        const qs = state.questions;
+        const answers = state.userAnswers;
+
+        let correct = 0, incorrect = 0, unanswered = 0;
+        const results = qs.map((q, i) => {
+            const selected = answers[i];
+            if (selected === null) { unanswered++; return { ...q, selected: null, isCorrect: false }; }
+            const isCorrect = q.answerOptions[selected].isCorrect;
+            if (isCorrect) correct++; else incorrect++;
+            return { ...q, selected, isCorrect };
+        });
+
+        const total = qs.length;
+        const pct = Math.round((correct / total) * 100);
+
+        const scoreCircle = $('scoreCircle');
+        if (pct >= 80) {
+            scoreCircle.className = 'inline-flex items-center justify-center w-20 h-20 rounded-full mb-4 bg-emerald-100';
+        } else if (pct >= 60) {
+            scoreCircle.className = 'inline-flex items-center justify-center w-20 h-20 rounded-full mb-4 bg-amber-100';
+        } else {
+            scoreCircle.className = 'inline-flex items-center justify-center w-20 h-20 rounded-full mb-4 bg-red-100';
+        }
+        $('scoreText').textContent = `${correct}/${total}`;
+
+        const [title, desc] = getTier(pct);
+        $('resultTitle').textContent = title;
+        $('resultDescription').textContent = desc;
+        $('correctCount').textContent = correct;
+        $('incorrectCount').textContent = incorrect;
+        $('unansweredCount').textContent = unanswered;
+
+        if (total === 0) {
+            $('improvementSection').classList.add('hidden');
+        } else {
+            initImprovementAreas(results);
+            initReviewList(results);
+        }
+
+        $('retryBtn').addEventListener('click', () => { startQuiz(state.quizData); });
+        $('newQuizBtn').addEventListener('click', () => { render('home'); });
+    }
+
+    function getTier(pct) {
+        if (pct >= 90) return ['Outstanding!', 'Mastery level knowledge'];
+        if (pct >= 80) return ['Great Job!', 'Strong understanding of the material'];
+        if (pct >= 70) return ['Good Effort!', 'Solid foundation with room to grow'];
+        if (pct >= 60) return ['Getting There!', 'You know some, keep studying'];
+        if (pct >= 40) return ['Keep Studying', 'Review the material and try again'];
+        return ['Needs Improvement', 'Focus on the fundamentals'];
+    }
+
+    function initImprovementAreas(results) {
+        const container = $('topicsList');
+        const wrongByTopic = {};
+
+        results.forEach((r, i) => {
+            if (!r.isCorrect) {
+                const topic = r.topic || extractTopic(r.question, i);
+                if (!wrongByTopic[topic]) wrongByTopic[topic] = { topic, count: 0, questions: [] };
+                wrongByTopic[topic].count++;
+                wrongByTopic[topic].questions.push(r.question);
+            }
+        });
+
+        const topics = Object.values(wrongByTopic).sort((a, b) => b.count - a.count);
+
+        if (topics.length === 0) {
+            container.innerHTML = `<div class="p-6 text-center text-emerald-600 font-medium">
+                <svg class="w-8 h-8 mx-auto mb-2 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                No areas for improvement needed — you got everything right!
+            </div>`;
+            return;
+        }
+
+        const maxCount = Math.max(...topics.map(t => t.count));
+        container.innerHTML = topics.map(t => {
+            const pct = maxCount > 0 ? Math.round((t.count / maxCount) * 100) : 0;
+            return `
+                <div class="topic-badge bg-slate-50 rounded-xl p-4">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="font-medium text-slate-800">${escapeHtml(t.topic)}</span>
+                        <span class="text-sm font-medium text-red-500">${t.count} wrong</span>
+                    </div>
+                    <div class="w-full bg-slate-200 rounded-full h-2">
+                        <div class="bg-red-400 h-2 rounded-full" style="width:${pct}%"></div>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-2">${t.questions.length} question(s) to review</p>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function extractTopic(question, index) {
+        const prefixes = ['What is', 'Which of the following', 'How does', 'What does', 'In the', 'The'];
+        for (const p of prefixes) {
+            if (question.startsWith(p)) {
+                const rest = question.slice(p.length).trim();
+                const parts = rest.split('"');
+                if (parts.length >= 2) return parts[1];
+                const words = rest.split(' ');
+                if (words.length >= 3) return words.slice(0, 3).join(' ');
+            }
+        }
+        return `Question ${index + 1}`;
+    }
+
+    function initReviewList(results) {
+        const container = $('reviewList');
+        container.innerHTML = results.map((r, i) => {
+            const correctOpt = r.answerOptions.find(o => o.isCorrect);
+            const selectedOpt = r.selected !== null ? r.answerOptions[r.selected] : null;
+            const statusClass = r.selected === null ? 'border-slate-200' : (r.isCorrect ? 'border-emerald-300 bg-emerald-50/50' : 'border-red-300 bg-red-50/50');
+            const statusIcon = r.selected === null ? 'circle' : (r.isCorrect ? 'check' : 'x');
+            const statusText = r.selected === null ? 'Unanswered' : (r.isCorrect ? 'Correct' : 'Incorrect');
+
+            return `
+                <div class="border-2 ${statusClass} rounded-xl overflow-hidden">
+                    <div class="p-4 cursor-pointer" onclick="this.nextElementSibling.classList.toggle('hidden')">
+                        <div class="flex items-start justify-between gap-3">
+                            <div class="flex items-start gap-3 min-w-0">
+                                <span class="shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold ${
+                                    r.selected === null ? 'bg-slate-200 text-slate-500' :
+                                    r.isCorrect ? 'bg-emerald-100 text-emerald-700' : 'bg-red-100 text-red-700'
+                                }">${r.selected === null ? '?' : (r.isCorrect ? '\u2713' : '\u2717')}</span>
+                                <div class="min-w-0">
+                                    <p class="font-medium text-slate-800 text-sm">${escapeHtml(r.question)}</p>
+                                    <p class="text-xs font-medium mt-1 ${r.selected === null ? 'text-slate-400' : (r.isCorrect ? 'text-emerald-600' : 'text-red-600')}">${statusText}</p>
+                                </div>
+                            </div>
+                            <svg class="w-4 h-4 text-slate-400 shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="hidden border-t ${r.selected === null ? 'border-slate-200' : (r.isCorrect ? 'border-emerald-200' : 'border-red-200')}">
+                        <div class="p-4 space-y-2 text-sm">
+                            ${selectedOpt ? `<div class="flex items-center gap-2"><span class="text-xs font-medium ${r.isCorrect ? 'text-emerald-600' : 'text-red-600'}">Your answer:</span><span>${escapeHtml(selectedOpt.text)}</span></div>` : ''}
+                            <div class="flex items-center gap-2"><span class="text-xs font-medium text-emerald-600">Correct answer:</span><span>${escapeHtml(correctOpt.text)}</span></div>
+                            ${correctOpt.rationale ? `<div class="mt-2 p-3 bg-slate-50 rounded-lg text-xs text-slate-600">${escapeHtml(correctOpt.rationale)}</div>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function escapeHtml(str) {
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+{
+  "name": "Databricks",
+  "children": [
+    {
+      "name": "Overview",
+      "children": [
+        {
+          "name": "Unified Data Analytics Platform"
+        },
+        {
+          "name": "Built by Apache Spark creators"
+        },
+        {
+          "name": "Lakehouse architecture"
+        },
+        {
+          "name": "Collaborative Workshop"
+        }
+      ]
+    },
+    {
+      "name": "Core Components",
+      "children": [
+        {
+          "name": "Apache Spark Engine",
+          "children": [
+            {
+              "name": "Optimized runtime"
+            },
+            {
+              "name": "Multi-language support"
+            }
+          ]
+        },
+        {
+          "name": "Delta Lake",
+          "children": [
+            {
+              "name": "ACID transactions"
+            },
+            {
+              "name": "Schema enforcement"
+            },
+            {
+              "name": "Time travel"
+            }
+          ]
+        },
+        {
+          "name": "Collaborative Notebooks",
+          "children": [
+            {
+              "name": "Real-time collaboration"
+            },
+            {
+              "name": "Inline visualizations"
+            },
+            {
+              "name": "Version control"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Workflow Steps",
+      "children": [
+        {
+          "name": "Step 1: Data lands in Lakehouse"
+        },
+        {
+          "name": "Step 2: Notebooks transform data"
+        },
+        {
+          "name": "Step 3: Jobs automate tasks"
+        },
+        {
+          "name": "Step 4: Clusters scale work"
+        },
+        {
+          "name": "Step 5: Dashboards for insights"
+        }
+      ]
+    },
+    {
+      "name": "Use Cases",
+      "children": [
+        {
+          "name": "Data Engineering",
+          "children": [
+            {
+              "name": "Data ingestion"
+            },
+            {
+              "name": "Cleaning and ETL"
+            },
+            {
+              "name": "Batch and Streaming"
+            }
+          ]
+        },
+        {
+          "name": "Machine Learning",
+          "children": [
+            {
+              "name": "MLflow integration"
+            },
+            {
+              "name": "Model tracking and deployment"
+            },
+            {
+              "name": "Large dataset training"
+            }
+          ]
+        },
+        {
+          "name": "Analytics",
+          "children": [
+            {
+              "name": "SQL queries"
+            },
+            {
+              "name": "BI tool connection"
+            },
+            {
+              "name": "Interactive dashboards"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Cloud Ecosystem",
+      "children": [
+        {
+          "name": "AWS"
+        },
+        {
+          "name": "Azure"
+        },
+        {
+          "name": "Google Cloud"
+        }
+      ]
+    }
+  ]
+}

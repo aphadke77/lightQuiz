@@ -1,0 +1,265 @@
+{
+  "title": "Databricks Quiz",
+  "questions": [
+    {
+      "question": "Who were the original developers responsible for creating Databricks?",
+      "answerOptions": [
+        {
+          "text": "The creators of Apache Spark",
+          "isCorrect": true,
+          "rationale": "Databricks was founded by the same team that developed the Spark engine to simplify big data and AI tasks."
+        },
+        {
+          "text": "The engineering team at AWS",
+          "isCorrect": false,
+          "rationale": "While Databricks runs on cloud providers like AWS, it was founded by an independent team of open-source developers."
+        },
+        {
+          "text": "The founders of MongoDB",
+          "isCorrect": false,
+          "rationale": "MongoDB is a separate document-based database system, not the foundational technology behind Databricks."
+        },
+        {
+          "text": "The Docker containerization team",
+          "isCorrect": false,
+          "rationale": "Docker is used for containerization, which is distinct from the big data processing roots of Databricks."
+        }
+      ],
+      "hint": "Consider which powerful open-source big data engine serves as the core of the platform."
+    },
+    {
+      "question": "What primary problem did the creation of Databricks aim to solve for data scientists?",
+      "answerOptions": [
+        {
+          "text": "The high cost of physical hardware storage",
+          "isCorrect": false,
+          "rationale": "While cost is a factor, the primary driver was the inefficiency of using disconnected tools for data tasks."
+        },
+        {
+          "text": "Spending too much time on 'plumbing' instead of AI",
+          "isCorrect": true,
+          "rationale": "Before Databricks, data scientists struggled with tools that did not communicate well, leading to excessive infrastructure management."
+        },
+        {
+          "text": "The inability to use Python for data analysis",
+          "isCorrect": false,
+          "rationale": "Python was already available; the issue was the lack of a unified environment to run it at scale with other tools."
+        },
+        {
+          "text": "A lack of available open-source machine learning libraries",
+          "isCorrect": false,
+          "rationale": "Libraries existed, but the challenge was integrating them into a cohesive and collaborative workflow."
+        }
+      ],
+      "hint": "Think about the frustration of managing many tools that don't 'talk' to each other."
+    },
+    {
+      "question": "What does the term 'Lakehouse' represent in the context of Databricks?",
+      "answerOptions": [
+        {
+          "text": "A specialized database for storing unstructured IoT data only",
+          "isCorrect": false,
+          "rationale": "This describes a limited use case, whereas a Lakehouse is designed to handle all types of data for various analytics."
+        },
+        {
+          "text": "A blend of data lake storage and data warehouse capabilities",
+          "isCorrect": true,
+          "rationale": "The Lakehouse architecture combines the low-cost storage of a data lake with the performance and governance of a warehouse."
+        },
+        {
+          "text": "A physical server facility optimized for cooling",
+          "isCorrect": false,
+          "rationale": "The term refers to a software architecture and storage strategy, not physical infrastructure."
+        },
+        {
+          "text": "A tool used exclusively for real-time streaming data",
+          "isCorrect": false,
+          "rationale": "While it supports streaming, its primary purpose is to serve as a unified storage layer for both batch and stream processing."
+        }
+      ],
+      "hint": "Consider the two traditional types of data storage systems being combined here."
+    },
+    {
+      "question": "Which component of the Databricks architecture is specifically responsible for providing ACID transactions on data lakes?",
+      "answerOptions": [
+        {
+          "text": "Apache Spark Engine",
+          "isCorrect": false,
+          "rationale": "Spark is the processing engine, but a specific storage layer is required to manage transaction reliability."
+        },
+        {
+          "text": "Delta Lake",
+          "isCorrect": true,
+          "rationale": "Delta Lake is the storage layer that brings reliability to data lakes through ACID transactions and schema enforcement."
+        },
+        {
+          "text": "MLflow",
+          "isCorrect": false,
+          "rationale": "MLflow focuses on the machine learning lifecycle, such as experiment tracking and model versioning."
+        },
+        {
+          "text": "Collaborative Notebooks",
+          "isCorrect": false,
+          "rationale": "Notebooks are the interface for writing code, not the underlying storage layer managing data integrity."
+        }
+      ],
+      "hint": "This layer allows for 'time travel' to query historical versions of data."
+    },
+    {
+      "question": "Which languages can be used together within a single Databricks collaborative notebook?",
+      "answerOptions": [
+        {
+          "text": "Python, SQL, Scala, and R",
+          "isCorrect": true,
+          "rationale": "Databricks notebooks are versatile, allowing multiple data-focused languages to coexist in one document."
+        },
+        {
+          "text": "Java, C++, and Python",
+          "isCorrect": false,
+          "rationale": "While Spark supports Java, Databricks notebooks are primarily optimized for the four specific data science languages."
+        },
+        {
+          "text": "HTML, CSS, and JavaScript",
+          "isCorrect": false,
+          "rationale": "These are web development languages and are not the primary languages supported for Databricks data processing."
+        },
+        {
+          "text": "SQL and Julia only",
+          "isCorrect": false,
+          "rationale": "Databricks supports a wider range of core languages beyond just SQL, and Julia is not one of the primary integrated notebook languages."
+        }
+      ],
+      "hint": "Think of the four most common languages used by data engineers and data scientists."
+    },
+    {
+      "question": "In the Databricks workflow, what is the purpose of 'Clusters'?",
+      "answerOptions": [
+        {
+          "text": "To provide long-term storage for raw data files",
+          "isCorrect": false,
+          "rationale": "Storage is handled by the Lakehouse/Delta Lake; clusters are meant for active computation."
+        },
+        {
+          "text": "To act as the primary interface for writing code",
+          "isCorrect": false,
+          "rationale": "The Notebook is the interface; the cluster provides the resources to execute the code written in the notebook."
+        },
+        {
+          "text": "Groups of machines that perform the heavy lifting of data processing",
+          "isCorrect": true,
+          "rationale": "Clusters are the computational resources that Databricks spins up on demand to process data quickly and efficiently."
+        },
+        {
+          "text": "To organize user accounts and security permissions",
+          "isCorrect": false,
+          "rationale": "Security and organization are usually handled by workspace settings or identity integration like Active Directory."
+        }
+      ],
+      "hint": "These are the 'muscles' of the platform that scale based on the work required."
+    },
+    {
+      "question": "How does Databricks allow users to automate a notebook so it runs on a specific schedule?",
+      "answerOptions": [
+        {
+          "text": "By converting the notebook into a Dashboard",
+          "isCorrect": false,
+          "rationale": "Dashboards are for visualization and sharing results, not for scheduling automated execution."
+        },
+        {
+          "text": "By turning the notebook into a Job",
+          "isCorrect": true,
+          "rationale": "Jobs are automated tasks that run scripts or notebooks on a schedule or trigger without manual intervention."
+        },
+        {
+          "text": "By manually restarting the cluster every day",
+          "isCorrect": false,
+          "rationale": "Manual restarts do not automate the execution of specific code or workflows."
+        },
+        {
+          "text": "By using the Delta Lake time travel feature",
+          "isCorrect": false,
+          "rationale": "Time travel is for auditing and recovering historical data, not for scheduling future tasks."
+        }
+      ],
+      "hint": "This feature is described as an 'automated task' that requires 'no hands' once set up."
+    },
+    {
+      "question": "Which of the following is a capability enabled by Databricks' integration with MLflow?",
+      "answerOptions": [
+        {
+          "text": "Real-time SQL querying of massive datasets",
+          "isCorrect": false,
+          "rationale": "SQL querying is a core feature of the Spark engine and Lakehouse, while MLflow is specifically for machine learning."
+        },
+        {
+          "text": "Experiment tracking and model versioning",
+          "isCorrect": true,
+          "rationale": "MLflow provides the tools necessary to track parameters, metrics, and versions of machine learning models during training."
+        },
+        {
+          "text": "Creating interactive charts and dashboards",
+          "isCorrect": false,
+          "rationale": "Visualization is handled by the notebook's built-in dashboarding features, not MLflow."
+        },
+        {
+          "text": "Automated data ingestion from Blob storage",
+          "isCorrect": false,
+          "rationale": "Ingestion is part of the data engineering pipeline, typically handled by Spark or dedicated ingestion tools."
+        }
+      ],
+      "hint": "This tool helps data scientists manage the lifecycle of their models."
+    },
+    {
+      "question": "In the standard data pipeline overview, which stage follows 'Store' and precedes 'Consume'?",
+      "answerOptions": [
+        {
+          "text": "Collect",
+          "isCorrect": false,
+          "rationale": "Collection is the very first stage where data is gathered from sources like applications or streams."
+        },
+        {
+          "text": "Ingest",
+          "isCorrect": false,
+          "rationale": "Ingestion happens after collection to move data into the storage layer."
+        },
+        {
+          "text": "Compute",
+          "isCorrect": true,
+          "rationale": "The compute stage involves batch and stream processing to prepare data for final consumption."
+        },
+        {
+          "text": "Visualize",
+          "isCorrect": false,
+          "rationale": "Visualization is part of the 'Consume' stage where users interact with the processed data."
+        }
+      ],
+      "hint": "This stage is where the actual 'processing' of data happens."
+    },
+    {
+      "question": "Databricks supports SQL analytics directly on data lakes, allowing analysts to connect which types of tools?",
+      "answerOptions": [
+        {
+          "text": "Text editors like Notepad++",
+          "isCorrect": false,
+          "rationale": "Simple text editors cannot perform the complex data visualization required for BI analytics."
+        },
+        {
+          "text": "BI tools like Power BI, Tableau, or Looker",
+          "isCorrect": true,
+          "rationale": "Databricks integrates with major Business Intelligence tools to allow for reporting without moving data to a separate warehouse."
+        },
+        {
+          "text": "Low-level machine drivers",
+          "isCorrect": false,
+          "rationale": "These drivers are for hardware communication and are not used for business data analysis."
+        },
+        {
+          "text": "Social media management platforms",
+          "isCorrect": false,
+          "rationale": "These platforms are for marketing operations, not for performing SQL analytics on a data lake."
+        }
+      ],
+      "hint": "These tools are commonly used for creating corporate reports and interactive business dashboards."
+    }
+  ]
+}
