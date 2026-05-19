@@ -1,0 +1,205 @@
+{
+  "title": "India Quiz",
+  "questions": [
+    {
+      "question": "What is the capital city of India?",
+      "answerOptions": [
+        { "text": "Mumbai", "isCorrect": false, "rationale": "Mumbai is the financial capital, but not the political capital." },
+        { "text": "New Delhi", "isCorrect": true, "rationale": "New Delhi has been the capital of India since 1911." },
+        { "text": "Kolkata", "isCorrect": false, "rationale": "Kolkata was the capital until 1911." },
+        { "text": "Chennai", "isCorrect": false, "rationale": "Chennai is a major city in South India, but not the capital." }
+      ],
+      "hint": "It is located in North India and was designed by Edwin Lutyens."
+    },
+    {
+      "question": "In what year did India gain independence from British rule?",
+      "answerOptions": [
+        { "text": "1942", "isCorrect": false, "rationale": "1942 was the year of the Quit India Movement." },
+        { "text": "1947", "isCorrect": true, "rationale": "India gained independence on August 15, 1947." },
+        { "text": "1950", "isCorrect": false, "rationale": "1950 is the year India became a Republic." },
+        { "text": "1948", "isCorrect": false, "rationale": "Independence was achieved in 1947, though many changes happened in 1948." }
+      ],
+      "hint": "It was shortly after World War II."
+    },
+    {
+      "question": "Who was the first Prime Minister of independent India?",
+      "answerOptions": [
+        { "text": "Sardar Vallabhbhai Patel", "isCorrect": false, "rationale": "Sardar Patel was the first Deputy Prime Minister and Home Minister." },
+        { "text": "Mahatma Gandhi", "isCorrect": false, "rationale": "Mahatma Gandhi never held an official government post." },
+        { "text": "Jawaharlal Nehru", "isCorrect": true, "rationale": "Jawaharlal Nehru served as the first Prime Minister from 1947 to 1964." },
+        { "text": "Lal Bahadur Shastri", "isCorrect": false, "rationale": "Lal Bahadur Shastri was the second Prime Minister." }
+      ],
+      "hint": "He is often referred to as 'Chacha Nehru'."
+    },
+    {
+      "question": "What is the national animal of India?",
+      "answerOptions": [
+        { "text": "Lion", "isCorrect": false, "rationale": "The Asiatic Lion was the national animal until 1972." },
+        { "text": "Elephant", "isCorrect": false, "rationale": "The Elephant is the national heritage animal, not the national animal." },
+        { "text": "Royal Bengal Tiger", "isCorrect": true, "rationale": "The Tiger was adopted as the national animal in 1972 to promote wildlife conservation." },
+        { "text": "Leopard", "isCorrect": false, "rationale": "The Leopard is common in India but is not the national animal." }
+      ],
+      "hint": "It is a large cat known for its orange fur and black stripes."
+    },
+    {
+      "question": "Which document is the supreme law of India?",
+      "answerOptions": [
+        { "text": "The Indian Penal Code", "isCorrect": false, "rationale": "The IPC is a criminal code, not the supreme law." },
+        { "text": "The Bhagavad Gita", "isCorrect": false, "rationale": "While a significant religious text, it is not a legal document." },
+        { "text": "The Constitution of India", "isCorrect": true, "rationale": "The Constitution is the supreme law of India, establishing the framework for government." },
+        { "text": "The Magna Carta", "isCorrect": false, "rationale": "The Magna Carta is an English document." }
+      ],
+      "hint": "It is the longest written constitution of any country on Earth."
+    },
+    {
+      "question": "Who is known as the 'Father of the Nation' in India?",
+      "answerOptions": [
+        { "text": "Subhash Chandra Bose", "isCorrect": false, "rationale": "He was a key leader but is not called the Father of the Nation." },
+        { "text": "Mahatma Gandhi", "isCorrect": true, "rationale": "Mohandas Karamchand Gandhi is honored as the Father of the Nation for his role in the independence movement." },
+        { "text": "B.R. Ambedkar", "isCorrect": false, "rationale": "He is known as the Father of the Indian Constitution." },
+        { "text": "Bhagat Singh", "isCorrect": false, "rationale": "He was a prominent revolutionary but not given this specific title." }
+      ],
+      "hint": "He led the Dandi March and advocated for non-violence."
+    },
+    {
+      "question": "What are the two official languages of the Union of India at the federal level?",
+      "answerOptions": [
+        { "text": "Hindi and Sanskrit", "isCorrect": false, "rationale": "Sanskrit is a classical language but not a primary official language of the Union." },
+        { "text": "Hindi and English", "isCorrect": true, "rationale": "According to Article 343, Hindi in Devanagari script is the official language, with English as an additional official language." },
+        { "text": "English and Bengali", "isCorrect": false, "rationale": "Bengali is an official language in some states but not at the Union level." },
+        { "text": "Hindi and Urdu", "isCorrect": false, "rationale": "Urdu is widely spoken but not the primary official language of the Union." }
+      ],
+      "hint": "One is an Indo-Aryan language and the other is a global lingua franca."
+    },
+    {
+      "question": "How many states and union territories does India have (as of 2024)?",
+      "answerOptions": [
+        { "text": "29 states, 7 territories", "isCorrect": false, "rationale": "This was the count before Jammu and Kashmir was reorganized." },
+        { "text": "28 states, 8 territories", "isCorrect": true, "rationale": "India has 28 states and 8 Union Territories following the 2019 reorganization and 2020 merger of Daman & Diu and Dadra & Nagar Haveli." },
+        { "text": "27 states, 9 territories", "isCorrect": false, "rationale": "There are currently 28 states." },
+        { "text": "30 states, 6 territories", "isCorrect": false, "rationale": "India has never had exactly 30 states." }
+      ],
+      "hint": "The number of states decreased by one in 2019."
+    },
+    {
+      "question": "Which city is known as the 'Silicon Valley of India'?",
+      "answerOptions": [
+        { "text": "Hyderabad", "isCorrect": false, "rationale": "Hyderabad is a major IT hub, often called 'Cyberabad', but not the Silicon Valley." },
+        { "text": "Pune", "isCorrect": false, "rationale": "Pune is an IT and education hub but not the primary Silicon Valley." },
+        { "text": "Bengaluru", "isCorrect": true, "rationale": "Bengaluru (Bangalore) is the nation's leading IT exporter and tech hub." },
+        { "text": "Gurugram", "isCorrect": false, "rationale": "Gurugram is a major commercial hub but not the Silicon Valley." }
+      ],
+      "hint": "It is the capital of Karnataka."
+    },
+    {
+      "question": "Which is the largest state in India by land area?",
+      "answerOptions": [
+        { "text": "Madhya Pradesh", "isCorrect": false, "rationale": "Madhya Pradesh was the largest before Chhattisgarh was carved out." },
+        { "text": "Maharashtra", "isCorrect": false, "rationale": "Maharashtra is the third-largest state by area." },
+        { "text": "Uttar Pradesh", "isCorrect": false, "rationale": "Uttar Pradesh is the most populous, but the fourth-largest by area." },
+        { "text": "Rajasthan", "isCorrect": true, "rationale": "Rajasthan is the largest state by area, covering much of the Thar Desert." }
+      ],
+      "hint": "It is known as the 'Land of Kings'."
+    },
+    {
+      "question": "What is the national flower of India?",
+      "answerOptions": [
+        { "text": "Rose", "isCorrect": false, "rationale": "The Rose is popular but not the national flower." },
+        { "text": "Lotus", "isCorrect": true, "rationale": "The Lotus (Nelumbo nucifera) is the national flower, symbolizing purity and divinity." },
+        { "text": "Jasmine", "isCorrect": false, "rationale": "Jasmine is common but not the national symbol." },
+        { "text": "Marigold", "isCorrect": false, "rationale": "Marigolds are used in many ceremonies but are not the national flower." }
+      ],
+      "hint": "It is an aquatic plant that grows in murky water but remains clean."
+    },
+    {
+      "question": "Who was the principal architect/author of the Indian Constitution?",
+      "answerOptions": [
+        { "text": "Jawaharlal Nehru", "isCorrect": false, "rationale": "Nehru was a key figure but not the chairman of the Drafting Committee." },
+        { "text": "B.R. Ambedkar", "isCorrect": true, "rationale": "Dr. Bhimrao Ramji Ambedkar was the Chairman of the Drafting Committee of the Constitution." },
+        { "text": "Rajendra Prasad", "isCorrect": false, "rationale": "Rajendra Prasad was the President of the Constituent Assembly." },
+        { "text": "Mahatma Gandhi", "isCorrect": false, "rationale": "Gandhi was not a member of the Constituent Assembly." }
+      ],
+      "hint": "He was also India's first Law Minister."
+    },
+    {
+      "question": "Which river is considered the most sacred and is also the national river of India?",
+      "answerOptions": [
+        { "text": "Yamuna", "isCorrect": false, "rationale": "The Yamuna is sacred but not the national river." },
+        { "text": "Brahmaputra", "isCorrect": false, "rationale": "The Brahmaputra is a major river but not the national one." },
+        { "text": "Ganga", "isCorrect": true, "rationale": "The Ganga (Ganges) was declared the national river in 2008." },
+        { "text": "Godavari", "isCorrect": false, "rationale": "Godavari is often called 'Dakshina Ganga' but is not the national river." }
+      ],
+      "hint": "It flows through the Indo-Gangetic Plain and into the Bay of Bengal."
+    },
+    {
+      "question": "What is the significance of January 26th in India?",
+      "answerOptions": [
+        { "text": "Independence Day", "isCorrect": false, "rationale": "Independence Day is August 15th." },
+        { "text": "Republic Day", "isCorrect": true, "rationale": "Republic Day commemorates the date on which the Constitution of India came into effect in 1950." },
+        { "text": "Gandhi Jayanti", "isCorrect": false, "rationale": "Gandhi Jayanti is October 2nd." },
+        { "text": "Constitution Day", "isCorrect": false, "rationale": "Constitution Day is November 26th (the day it was adopted)." }
+      ],
+      "hint": "It celebrates India becoming a sovereign democratic republic."
+    },
+    {
+      "question": "What is the name of India's national anthem?",
+      "answerOptions": [
+        { "text": "Vande Mataram", "isCorrect": false, "rationale": "Vande Mataram is the national song, not the national anthem." },
+        { "text": "Jana Gana Mana", "isCorrect": true, "rationale": "Jana Gana Mana, composed by Rabindranath Tagore, is the national anthem." },
+        { "text": "Sare Jahan Se Achha", "isCorrect": false, "rationale": "This is a patriotic song but not the official anthem." },
+        { "text": "Ae Mere Watan Ke Logon", "isCorrect": false, "rationale": "This is a famous patriotic song but not the anthem." }
+      ],
+      "hint": "It was composed by the Nobel laureate Rabindranath Tagore."
+    },
+    {
+      "question": "Which ocean lies to the south of the Indian peninsula?",
+      "answerOptions": [
+        { "text": "Atlantic Ocean", "isCorrect": false, "rationale": "The Atlantic does not border India." },
+        { "text": "Pacific Ocean", "isCorrect": false, "rationale": "The Pacific is further east, beyond Southeast Asia." },
+        { "text": "Indian Ocean", "isCorrect": true, "rationale": "The Indian Ocean is the third-largest ocean and lies to the south of India." },
+        { "text": "Arctic Ocean", "isCorrect": false, "rationale": "The Arctic is to the far north of the globe." }
+      ],
+      "hint": "It is the only ocean named after a country."
+    },
+    {
+      "question": "Which is the most populous state in India?",
+      "answerOptions": [
+        { "text": "Bihar", "isCorrect": false, "rationale": "Bihar is the third-most populous state." },
+        { "text": "West Bengal", "isCorrect": false, "rationale": "West Bengal is the fourth-most populous state." },
+        { "text": "Maharashtra", "isCorrect": false, "rationale": "Maharashtra is the second-most populous state." },
+        { "text": "Uttar Pradesh", "isCorrect": true, "rationale": "With over 200 million people, Uttar Pradesh is the most populous state in India." }
+      ],
+      "hint": "Its capital is Lucknow."
+    },
+    {
+      "question": "What is the national currency of India?",
+      "answerOptions": [
+        { "text": "Taka", "isCorrect": false, "rationale": "The Taka is the currency of Bangladesh." },
+        { "text": "Rupee", "isCorrect": true, "rationale": "The Indian Rupee (INR) is the official currency, controlled by the RBI." },
+        { "text": "Rupiah", "isCorrect": false, "rationale": "The Rupiah is the currency of Indonesia." },
+        { "text": "Dinar", "isCorrect": false, "rationale": "The Dinar is used in several Middle Eastern and North African countries." }
+      ],
+      "hint": "Its symbol is ₹."
+    },
+    {
+      "question": "Which is the highest mountain peak entirely within India?",
+      "answerOptions": [
+        { "text": "Mount Everest", "isCorrect": false, "rationale": "Mount Everest is in Nepal and China." },
+        { "text": "K2", "isCorrect": false, "rationale": "K2 is in the Karakoram range (PoK/Pakistan/China)." },
+        { "text": "Kanchenjunga", "isCorrect": true, "rationale": "Kanchenjunga is the highest peak in India (on the border with Nepal)." },
+        { "text": "Nanda Devi", "isCorrect": false, "rationale": "Nanda Devi is the second-highest in India and the highest entirely within Indian territory (Kanchenjunga is shared)." }
+      ],
+      "hint": "It is located in the state of Sikkim."
+    },
+    {
+      "question": "What is the national bird of India?",
+      "answerOptions": [
+        { "text": "Parrot", "isCorrect": false, "rationale": "Parrots are common but not the national bird." },
+        { "text": "Kingfisher", "isCorrect": false, "rationale": "The Kingfisher is not the national bird." },
+        { "text": "Indian Peacock", "isCorrect": true, "rationale": "The Indian Peacock was declared the national bird in 1963." },
+        { "text": "Eagle", "isCorrect": false, "rationale": "The Eagle is the national bird of several other countries, but not India." }
+      ],
+      "hint": "It is a colorful bird known for its beautiful tail feathers and dance during rain."
+    }
+  ]
+}

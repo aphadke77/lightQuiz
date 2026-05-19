@@ -1,0 +1,155 @@
+{
+  "title": "Ollama Quiz",
+  "questions": [
+    {
+      "question": "What is the primary purpose of Ollama?",
+      "answerOptions": [
+        { "text": "To train large language models from scratch", "isCorrect": false, "rationale": "Ollama is designed for running and managing models, not for training them." },
+        { "text": "To run large language models locally", "isCorrect": true, "rationale": "Ollama allows users to easily run open-source LLMs like Llama 3, Mistral, and others on their own hardware." },
+        { "text": "To provide a cloud-based hosting platform for AI", "isCorrect": false, "rationale": "Ollama is focused on local execution, although it can be accessed over a network." },
+        { "text": "To act as a search engine for AI models", "isCorrect": false, "rationale": "While it has a library of models, its primary purpose is execution." }
+      ],
+      "hint": "Think about where the model computation happens."
+    },
+    {
+      "question": "Which command is used to start a model and chat with it in the terminal?",
+      "answerOptions": [
+        { "text": "ollama start <model>", "isCorrect": false, "rationale": "'start' is not a standard Ollama command for chatting." },
+        { "text": "ollama exec <model>", "isCorrect": false, "rationale": "'exec' is not used to initiate a chat session." },
+        { "text": "ollama run <model>", "isCorrect": true, "rationale": "The 'run' command pulls the model if it's not present and starts an interactive chat session." },
+        { "text": "ollama chat <model>", "isCorrect": false, "rationale": "While intuitive, the command is 'run'." }
+      ],
+      "hint": "It's the most common command used with Ollama."
+    },
+    {
+      "question": "What file format does Ollama use to define and package models?",
+      "answerOptions": [
+        { "text": "Dockerfile", "isCorrect": false, "rationale": "Ollama uses a syntax inspired by Dockerfile, but it's specifically for models." },
+        { "text": "Modelfile", "isCorrect": true, "rationale": "A 'Modelfile' is used to define the base model, parameters, system prompt, and more." },
+        { "text": "OllamaConfig", "isCorrect": false, "rationale": "This is not a standard Ollama file name." },
+        { "text": "GGUF", "isCorrect": false, "rationale": "GGUF is the underlying model weight format, but 'Modelfile' is the configuration format." }
+      ],
+      "hint": "The name is very similar to a common container configuration file."
+    },
+    {
+      "question": "By default, on which port does the Ollama server listen?",
+      "answerOptions": [
+        { "text": "8080", "isCorrect": false, "rationale": "8080 is a common web server port, but not Ollama's default." },
+        { "text": "11434", "isCorrect": true, "rationale": "Ollama defaults to port 11434 for its API server." },
+        { "text": "5000", "isCorrect": false, "rationale": "5000 is often used by Flask, not Ollama." },
+        { "text": "3000", "isCorrect": false, "rationale": "3000 is common for React/Node.js, not Ollama." }
+      ],
+      "hint": "The number spells out 'OLLAMA' on some phone keypads (sort of)."
+    },
+    {
+      "question": "How do you specify a specific version or size of a model, such as Llama 3 70B?",
+      "answerOptions": [
+        { "text": "Using a flag: --size 70b", "isCorrect": false, "rationale": "Ollama uses tags in the model name instead of flags." },
+        { "text": "Using a colon: llama3:70b", "isCorrect": true, "rationale": "Like Docker, Ollama uses tags appended with a colon to specify versions." },
+        { "text": "By downloading a specific file manually", "isCorrect": false, "rationale": "Ollama manages downloads via its library and tags." },
+        { "text": "Using a subdirectory: llama3/70b", "isCorrect": false, "rationale": "The colon syntax is the correct convention." }
+      ],
+      "hint": "It follows the same convention as Docker image tagging."
+    },
+    {
+      "question": "Which Ollama command shows all the models currently installed on your system?",
+      "answerOptions": [
+        { "text": "ollama list", "isCorrect": true, "rationale": "The 'list' command (or 'ls') displays all local models." },
+        { "text": "ollama show", "isCorrect": false, "rationale": "'show' is used to get detailed information about a specific model." },
+        { "text": "ollama models", "isCorrect": false, "rationale": "This is not a valid command." },
+        { "text": "ollama status", "isCorrect": false, "rationale": "There is no 'status' command to list models." }
+      ],
+      "hint": "It's a common command for listing resources in many CLI tools."
+    },
+    {
+      "question": "What does the 'SYSTEM' instruction in an Ollama Modelfile do?",
+      "answerOptions": [
+        { "text": "Sets environment variables for the OS", "isCorrect": false, "rationale": "The Modelfile is for the model's behavior, not the OS." },
+        { "text": "Defines the system prompt to guide the model's behavior", "isCorrect": true, "rationale": "The 'SYSTEM' instruction provides the initial context or persona for the LLM." },
+        { "text": "Allocates system memory (RAM)", "isCorrect": false, "rationale": "Memory is handled by Ollama automatically or via other parameters." },
+        { "text": "Specifies the operating system requirements", "isCorrect": false, "rationale": "Ollama handles OS compatibility internally." }
+      ],
+      "hint": "It's used to tell the AI 'who' it is or how it should act."
+    },
+    {
+      "question": "Which command removes a model from your local storage?",
+      "answerOptions": [
+        { "text": "ollama delete <model>", "isCorrect": false, "rationale": "The command is 'rm', following Unix conventions." },
+        { "text": "ollama rm <model>", "isCorrect": true, "rationale": "'rm' is the command used to remove a model." },
+        { "text": "ollama uninstall <model>", "isCorrect": false, "rationale": "Ollama uses 'rm' for model deletion." },
+        { "text": "ollama remove <model>", "isCorrect": false, "rationale": "While 'remove' is clear, the actual command is 'rm'." }
+      ],
+      "hint": "It's the short form of 'remove'."
+    },
+    {
+      "question": "Can Ollama run models that are not in the official Ollama library?",
+      "answerOptions": [
+        { "text": "No, only official models are supported", "isCorrect": false, "rationale": "Ollama is very flexible and supports custom models." },
+        { "text": "Yes, by importing GGUF files using a Modelfile", "isCorrect": true, "rationale": "You can use the 'FROM' instruction in a Modelfile to point to a local GGUF file." },
+        { "text": "Yes, but only if they are converted to Python files", "isCorrect": false, "rationale": "Ollama works with model weights (GGUF), not source code." },
+        { "text": "Yes, by dragging and dropping them into the app", "isCorrect": false, "rationale": "Management is primarily through the CLI and Modelfiles." }
+      ],
+      "hint": "You can create your own models starting 'FROM' a file."
+    },
+    {
+      "question": "What happens if you run 'ollama run <model>' and the model is not yet downloaded?",
+      "answerOptions": [
+        { "text": "The command fails with an error", "isCorrect": false, "rationale": "Ollama is designed to be user-friendly and handles this automatically." },
+        { "text": "It automatically pulls (downloads) the model first", "isCorrect": true, "rationale": "'run' implies 'pull' if the model doesn't exist locally." },
+        { "text": "It searches the web for a similar model", "isCorrect": false, "rationale": "It pulls the exact model requested from the Ollama library." },
+        { "text": "It asks the user to manually download it", "isCorrect": false, "rationale": "The process is automated." }
+      ],
+      "hint": "It's a 'one-stop-shop' command for starting a chat."
+    },
+    {
+      "question": "Which environment variable can be used to change the host/port Ollama binds to?",
+      "answerOptions": [
+        { "text": "OLLAMA_PORT", "isCorrect": false, "rationale": "Ollama uses a more comprehensive variable name." },
+        { "text": "OLLAMA_HOST", "isCorrect": true, "rationale": "Setting OLLAMA_HOST (e.g., to '0.0.0.0:11434') changes the binding." },
+        { "text": "OLLAMA_SERVER_URL", "isCorrect": false, "rationale": "This is not the standard variable name." },
+        { "text": "OLLAMA_ADDRESS", "isCorrect": false, "rationale": "The variable is OLLAMA_HOST." }
+      ],
+      "hint": "It's the variable that defines the server's network location."
+    },
+    {
+      "question": "Does Ollama support GPU acceleration?",
+      "answerOptions": [
+        { "text": "No, it only runs on CPU", "isCorrect": false, "rationale": "GPU acceleration is a key feature of Ollama for performance." },
+        { "text": "Yes, it supports NVIDIA (CUDA), Apple Silicon (Metal), and AMD (ROCm)", "isCorrect": true, "rationale": "Ollama automatically detects and uses available GPU acceleration across major platforms." },
+        { "text": "Yes, but only on Linux", "isCorrect": false, "rationale": "It supports GPU acceleration on macOS and Windows as well." },
+        { "text": "Yes, but it requires a special Pro version", "isCorrect": false, "rationale": "GPU support is included in the standard, open-source version." }
+      ],
+      "hint": "It supports most modern high-performance hardware."
+    },
+    {
+      "question": "What is the purpose of the 'PARAMETER' instruction in a Modelfile?",
+      "answerOptions": [
+        { "text": "To set model-specific settings like temperature and top_p", "isCorrect": true, "rationale": "Parameters allow you to fine-tune how the model generates text." },
+        { "text": "To define the command-line arguments for the 'run' command", "isCorrect": false, "rationale": "Parameters in a Modelfile are for the model's internal settings." },
+        { "text": "To specify the hardware requirements", "isCorrect": false, "rationale": "Hardware is managed by the Ollama engine, not parameters." },
+        { "text": "To list the training data sources", "isCorrect": false, "rationale": "Training data is not part of the Modelfile execution configuration." }
+      ],
+      "hint": "It's used for 'hyperparameters' of the inference process."
+    },
+    {
+      "question": "Which command updates the Ollama CLI and server?",
+      "answerOptions": [
+        { "text": "ollama update", "isCorrect": false, "rationale": "Updating is usually done via the OS package manager or re-downloading the installer." },
+        { "text": "ollama upgrade", "isCorrect": false, "rationale": "There is no 'upgrade' command within the CLI itself." },
+        { "text": "By re-running the installation script or downloading the latest app", "isCorrect": true, "rationale": "Ollama doesn't currently have a self-update command; you update it like most applications." },
+        { "text": "ollama pull latest", "isCorrect": false, "rationale": "This updates a specific model, not the Ollama software itself." }
+      ],
+      "hint": "How do you usually update a standalone app on your OS?"
+    },
+    {
+      "question": "What is the primary endpoint for the Ollama generation API?",
+      "answerOptions": [
+        { "text": "/api/chat", "isCorrect": true, "rationale": "While /api/generate exists, /api/chat is the primary endpoint for conversational models." },
+        { "text": "/v1/completions", "isCorrect": false, "rationale": "This is the OpenAI format; Ollama has its own, though it also offers an OpenAI-compatible layer." },
+        { "text": "/api/run", "isCorrect": false, "rationale": "The endpoint is /api/generate or /api/chat." },
+        { "text": "/model/generate", "isCorrect": false, "rationale": "The standard path is /api/chat." }
+      ],
+      "hint": "It involves the word 'api' and the word 'chat'."
+    }
+  ]
+}
